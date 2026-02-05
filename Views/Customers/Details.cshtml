@@ -1,0 +1,14 @@
+@model Vidly.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Membership Type: @Model.MembershipType?.Name</li>
+    <li>Subscribed to Newsletter: @(Model.IsSubscribedToNewsletter ? "Yes" : "No")</li>
+</ul>
+
+<a asp-action="Index" class="btn btn-primary">Back to List</a>

@@ -13,7 +13,7 @@ namespace Vidly.Controllers
             var movie = new Movie() { Name = "Shrek!"};
             var Customers = new List<Customer>
             {
-                new Customer { Name = "Hem Raj"},
+                new Customer { Name = "Hem Raj" },
                 new Customer { Name = "Hemant"}
             };
             var ViewModel = new RandomMovieViewModel
