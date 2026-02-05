@@ -4,44 +4,52 @@
 }
 
 <h2>@ViewBag.Title</h2>
-
 @* @using (@Html.BeginForm("Create", "Customers")) *@
-@using (Html.BeginForm(Model.Customer?.Id == 0 ? "Create" : "Edit", "Customers", FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Save", "Customers"))
 {
     @Html.AntiForgeryToken()
-
-    <!-- Very important: send the ID back so Edit knows which record to update -->
     @Html.HiddenFor(m => m.Customer.Id)
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Name, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })   <!-- changed to TextBoxFor (name is single line) -->
-        @Html.ValidationMessageFor(m => m.Customer.Name, "", new { @class = "text-danger" })
+        @Html.LabelFor(m => m.Customer.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Customer.Name, "", new { @class = "text-danger" })
+        </div>
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Customer.Birthdate, new { @class = "control-label" })
-        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
-        @Html.ValidationMessageFor(m => m.Customer.Birthdate, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group checkbox">
-        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
-        <label>Subscribe to Newsletter?</label>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "control-label" })
-        @Html.DropDownListFor(
-            m => m.Customer.MembershipTypeId,
-            new SelectList(Model.MembershipTypes, "Id", "Name", Model.Customer?.MembershipTypeId),
-            "Select Membership Type",
-            new { @class = "form-control" }
-        )
-        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId, "", new { @class = "text-danger" })
+        @Html.LabelFor(m => m.Customer.Birthdate, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:yyyy-MM-dd}", 
+                new { @class = "form-control", type = "date" })
+            @Html.ValidationMessageFor(m => m.Customer.Birthdate)
+        </div>
     </div>
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save</button>
+        <div class="col-md-offset-2 col-md-10">
+            @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter)
+            @Html.LabelFor(m => m.Customer.IsSubscribedToNewsletter)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Customer.MembershipTypeId, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(
+                m => m.Customer.MembershipTypeId,
+                new SelectList(Model.MembershipTypes, "Id", "Name", Model.Customer?.MembershipTypeId),
+                "Select Membership Type",
+                new { @class = "form-control" }
+            )
+            @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
     </div>
 }

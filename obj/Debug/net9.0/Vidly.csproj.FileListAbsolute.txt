@@ -21,7 +21,6 @@
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/scopedcss/bundle/Vidly.styles.css
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/scopedcss/projectbundle/Vidly.bundle.scp.css
-/Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/compressed/srz16nyksf-b9sayid5wm.gz
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/compressed/46i646lv0e-61n19gt1b8.gz
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/compressed/gvfahcwtoc-xtxxf3hu2r.gz
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/compressed/ycoop12uxi-bqjiyaj88i.gz
@@ -254,3 +253,4 @@
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/Vidly.sourcelink.json
+/Users/hemrajdadral/Downloads/learning/Vidly/Vidly/obj/Debug/net9.0/compressed/srz16nyksf-28gp7n76sb.gz

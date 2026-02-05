@@ -53,28 +53,16 @@ public class CustomersController: Controller
     }
     public ActionResult New()
     {
-        var MembershipType = _context.MembershipTypes.ToList();
-        var ViewModels= new CustomerFormViewModel
+        var membershipTypes = _context.MembershipTypes.ToList();
+        var viewModel = new CustomerFormViewModel
         {
-            MembershipTypes = MembershipType
+            MembershipTypes = membershipTypes,
+            Customer = new Customer() // Initialize an empty customer for the form
         };
-        return View("CustomerForm",ViewModels);
+        return View("CustomerForm", viewModel);
     }
 
-    [HttpPost]
-    [ValidateAntiForgeryToken]    
-    public ActionResult Create(CustomerFormViewModel viewModel)
-    {
-        // if (!ModelState.IsValid)
-        // {
-        //     viewModel.MembershipTypes = _context.MembershipTypes.ToList();
-        //     return View("CustomerForm", viewModel);    
-        // }
-
-        _context.Customers.Add(viewModel.Customer);
-        _context.SaveChanges();
-        return RedirectToAction("Index","Customers");
-    }
+   
     public ActionResult Edit(int id)
     {
         var customer = _context.Customers.SingleOrDefault(c => c.Id ==id);
@@ -91,33 +79,41 @@ public class CustomersController: Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(CustomerFormViewModel viewModel)
+    public ActionResult Save(Customer customer)
     {
-        // if (!ModelState.IsValid)
-        // {
-        //     viewModel.MembershipTypes = _context.MembershipTypes.ToList();
-        //     return View("CustomerForm", viewModel);
-        // }
-        if (viewModel.Customer.Id == 0)
+        if (!ModelState.IsValid)
         {
-            _context.Customers.Add(viewModel.Customer);
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
+        }
+      
+       
+        if(customer.Id == 0)
+        {
+            _context.Customers.Add(customer);
         }
         else
         {
-            var customerInDb = _context.Customers.Find(viewModel.Customer.Id);
+            var customerInDb = _context.Customers.Find(customer.Id);
             if (customerInDb == null)
                 return NotFound();
 
-            customerInDb.Name = viewModel.Customer.Name;
-            customerInDb.Birthdate = viewModel.Customer.Birthdate;
-            customerInDb.IsSubscribedToNewsletter = viewModel.Customer.IsSubscribedToNewsletter;
-            customerInDb.MembershipTypeId = viewModel.Customer.MembershipTypeId;
+            //Mapper.Map(customer, customerInDb); // Using AutoMapper to map properties
+            customerInDb.Name = customer.Name;
+            customerInDb.Birthdate = customer.Birthdate;
+            customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+            customerInDb.MembershipTypeId = customer.MembershipTypeId;
         }
+        
         
 
         _context.SaveChanges();
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Customers");
     }
     
 }
