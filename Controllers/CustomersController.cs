@@ -31,10 +31,10 @@ public class CustomersController: Controller
     {
         // var customers = GetCustomers();
         // var customers = _context.Customers.ToList();
-        var customers = _context.Customers
-                .Include(c => c.MembershipType) // Eager load the related MembershipType
-                .ToList();
-        return View(customers);
+        // var customers = _context.Customers
+        //         .Include(c => c.MembershipType) // Eager load the related MembershipType
+        //         .ToList();
+        return View();
     }
 
     public ActionResult Details(int Id)
