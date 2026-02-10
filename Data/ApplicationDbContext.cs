@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using Vidly.Models;
 
@@ -16,6 +17,7 @@ namespace Vidly.Data  // Adjust if your project uses a different namespace (chec
 
         // Add DbSets here as you create entities, e.g.:
         public DbSet<Movie> Movies { get; set; }
+        public DbSet<Genre> Genre {get; set;}
         public DbSet<Customer> Customers { get; set; }
         public DbSet<MembershipType> MembershipTypes { get; set; }
 

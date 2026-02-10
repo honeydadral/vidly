@@ -1,3 +1,57 @@
+@model IEnumerable<Vidly.Models.Movie>
 @{
-    ViewBag["Title"] = "Movies";
+    ViewBag.Title = "Movies";
+}
+
+<h2>All movies</h2>
+<p>
+    <a class="btn btn-primary" href="@Url.Action("New","Movies")">
+        <i class="glyphicon glyphicon-plus"></i> Add New Movie
+    </a>
+</p>
+<table id="movietable" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Movie</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+            <th>In Stock</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section Scripts{
+    <script>
+           $(document).ready(function () {
+                $('#movietable').DataTable({
+                        ajax: {
+                            url: '/api/movies',
+                            dataSrc: ''
+                        },
+                        columns: [
+                            { data: 'name' },              // Movie name
+                            { data: 'genreName' },         // Genre (you mapped Genre.Name → genreName in DTO)
+                            { 
+                                data: 'releaseDate',
+                                render: function (data) {
+                                    // Optional: format date nicely (ISO → readable)
+                                    if (!data) return '';
+                                    var date = new Date(data);
+                                    return date.toLocaleDateString(); // or use moment.js / toShortDateString()
+                                }
+                            },
+                            { data: 'numberInStock' },     // In Stock
+                            { data: 'rating' }
+                        ],
+                        pageLength: 10,
+                        lengthMenu: [5, 10, 25, 50],
+                        ordering: true,
+                        searching: true,
+                        info: true,
+                        responsive: true
+                });
+           })
+    </script>
 }

@@ -14,10 +14,10 @@ namespace Vidly.Models
     
         public MembershipType? MembershipType{get; set;}
 
-    [Required(ErrorMessage = "Membership Type is required")]
-    [Display(Name ="Membership Type")]
-    [Range(1, 255)]
-    public byte MembershipTypeId { get; set; }
+        [Required(ErrorMessage = "Membership Type is required")]
+        [Display(Name ="Membership Type")]
+        [Range(1, 255)]
+        public byte MembershipTypeId { get; set; }
 
 
         [Display(Name = "Date of Birth")]
